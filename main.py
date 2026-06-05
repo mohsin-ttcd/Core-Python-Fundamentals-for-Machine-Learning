@@ -1,127 +1,36 @@
-raw_data = "  mission:apollo11; mission_code:A11; status:success"
-
-clean_raw_data = raw_data.strip().upper()
-
-process_raw_data = clean_raw_data.split(";")
-
-final_formated_data = process_raw_data[1].strip()
-
-print(f"Cleaned Raw Data: {clean_raw_data}")
-print(f"Formated Data: {final_formated_data}")
-
-
-missions = [2026, "Artemis III", "Moon", 2027, "Europa Clipper", "Jupiter"]
-
-first_mission_year = missions[0]
-last_item = missions[-1]
-
-# Let's say the Artemis III mission is delayed to 2028
-missions[0] = 2028
-#adding elements
-missions.append(False)
-
-print(f"First mission year: {first_mission_year}")
-print(f"Last item: {last_item}")
-print(f"Delayed Mission: {missions}")
-
-
-tuple_config = ("v1.2.5", "production", 4096, True)
-print(tuple_config)
-print(type(tuple_config))
-
-print(f"First iteam: {tuple_config[0]}")
-print(f"Last iteam: {tuple_config[-1]}")
-
-
-planet_data = {
-    "name": "Mars",
-    "diameter_km": 6779,
-    "has_rings": False,
-    "moons": ["Phobos", "Deimos"]
-}
-
-# access specific key and print it's value
-print(f"Original Dictionary: {planet_data}")
-print(f"Moons of {planet_data["name"]}: {", ".join(planet_data["moons"])}")
-
-# update dictionary value
-planet_data["has_rings"] = True
-print(f"Updated Dictionary: {planet_data}")
-
-# update dictionary
-planet_data["orbital_period_days"] = 687
-print(f"New Dictionary: {planet_data}")
-
-# safe way use get method
-mean_temp = planet_data.get("mean_temperature", "Not available")
-print(f"\nMean temperature: {mean_temp}")
-
-apollo_11 = {
-    "mission_name": "Apollo 11",
-    "launch_year": 1968, # Incorrect year
-    "destination": "Moon",
-    "crew": ["Neil Armstrong", "Buzz Aldrin"] # Missing a crew member
-}
-
-
-apollo_11["launch_year"] = 1969
-crew_list = apollo_11["crew"]
-crew_list.append("Michael Collins")
-
-print(apollo_11 )
-
-
-planet_data = {
-    "name": "Mars",
-    "diameter_km": 6779,
-    "has_rings": False,
-}
-
-
-for keys, value in planet_data.items():
-    print(keys, ":", value)
-
-for key in planet_data:
-    value = planet_data[key]
-    print(key, ":", value)
-
-
-mission_logs = [
-    {"name": "Mariner 4", "year": 1964, "status": "successful"},
-    {"name": "Zond 2", "year": 1964, "status": "failed"},
-    {"name": "Venera 7", "year": 1970, "status": "successful"},
-    {"name": "Phobos 1", "year": 1988, "status": "failed"},
-    {"name": "Viking 1", "year": 1975, "status": "successful"}
+spacecraft_fleet = [
+    {"name": "Voyager 1", "launch_year": 1977, "status": "operational"},
+    {"name": "Pioneer 10", "launch_year": 1972, "status": "unknown"},
+    {"name": "Cassini-Huygens", "launch_year": 1997, "status": "retired"},
+    {"name": "Hubble Telescope", "launch_year": 1990, "status": "operational"},
+    {"name": "Magellan", "launch_year": 1989, "status": "retired"}
 ]
 
-print("--- Successful Mission Report ---")
+def generate_fleet_report(fleet_list):
+    report_lines = []
 
-for mission in  mission_logs:
-    
-    if mission['status'] == "successful":
-        print(f"Mission: {mission["name"]}, Year: {mission["year"]}")
+    for spacecraft in fleet_list:
+        
+        # access dictionary safely
+        name = spacecraft.get("name", "N/A")
+        year = spacecraft.get("launch_year", "N/A")
+        status = spacecraft.get("status", "N/A")
+
+        if status == "operational":
+            line = f"[OPERATIONAL] {name} (Launched: {year})"
+
+        elif status == "retired":
+            line = f"[RETIRED] {name} (Launched: {year})"
+        
+        else:
+            line = f"[UNKNOWN] {name} (Launched: {year})"
+
+        report_lines.append(line)
+
+    return report_lines
 
 
-earth_data = {
-    "name": "Earth",
-    "diameter_km": 12742,
-    "moons": ["Moon"]
-}
+final_report = generate_fleet_report(spacecraft_fleet)
 
-# Another dictionary with different data
-jupiter_data = {
-    "name": "Jupiter",
-    "diameter_km": 139820,
-    "moons": ["Io", "Europa", "Ganymede", "Callisto"] # and many more!
-}
-
-
-def planet_summery(planet_dict):
-    planet_name = planet_dict.get("name", "N/A")
-    planet_diameter_km = planet_dict.get("diameter_km", "N/A")
-    planet_moons = len(planet_dict.get(("moons"), []))
-
-    return f"{planet_name} has a diameter of {planet_diameter_km} km and {planet_moons} main moon(s)."
-
-print(planet_summery(jupiter_data))
-print(planet_summery(earth_data))
+for report in  final_report:
+    print(report)
