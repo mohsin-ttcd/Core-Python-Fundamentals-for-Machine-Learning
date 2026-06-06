@@ -1,0 +1,24 @@
+project_name = "Jupiter"
+launch_year = 2024
+orbital_speed_km_s = 29.78
+is_crewed = False
+
+# 1. Using an f-string to create a summary sentence.
+summary_sentence = f"The {project_name} mission, scheduled for {launch_year}, has a crew status of {is_crewed}."
+print("Formatted Sentence:")
+print(summary_sentence)
+
+# 2. Using string methods
+mixed_case_string = "   Some Spaced-Out Text   "
+print("\nOriginal Mixed-Case String:", f"'{mixed_case_string}'")
+
+# Chaining methods: first strip whitespace, then convert to lowercase
+processed_string = mixed_case_string.strip().lower()
+print("Processed String:", f"'{processed_string}'")
+
+# 3. Splitting a string into a list of words
+log_entry = "Mission-Status:Nominal,Target-Planet:Mars,Payload-Mass:450kg"
+log_parts = log_entry.split(',')
+print("\nOriginal Log Entry:", log_entry)
+print("Split Log Parts:", log_parts)
+print("Type of log_parts:", type(log_parts))
