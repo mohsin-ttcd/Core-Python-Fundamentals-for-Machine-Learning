@@ -1,3 +1,6 @@
+# Broadcasting is method that is replaces the traditional python loop
+# numpy replace loop with built-in array operation called vectorization.
+
 import numpy as np
 
 np_1D_arr = np.arange(1,10)
