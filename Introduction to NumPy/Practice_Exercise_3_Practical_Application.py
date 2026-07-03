@@ -9,5 +9,10 @@ import numpy as np
 
 prices = np.array([19.99, 25.50, 9.95, 32.00, 65.75])
 
+# more time complex
 after_tax_prices = prices + (prices * .20)
-print(f"The final price of each product after adding a 20% tax: {after_tax_prices:.2f}")
+print(f"The final price of each product after adding a 20% tax: {after_tax_prices}")
+
+# less time complex
+final_prices = prices * 1.20
+print("Final prices with tax:", final_prices)

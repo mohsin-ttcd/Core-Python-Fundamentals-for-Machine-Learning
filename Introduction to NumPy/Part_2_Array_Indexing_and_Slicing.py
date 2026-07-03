@@ -4,11 +4,10 @@ import numpy as np
 
 # 1D array
 
-np_array = np.arange(10)
+np_array = np.arange(5,15)
 print(f"Original array: {np_array}")
 
 np_array[0] = 100
-
 array_index = np_array[6]
 print(array_index)
 
